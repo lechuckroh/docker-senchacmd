@@ -18,3 +18,5 @@ $ docker run \
     lechuckroh/senchacmd \
     bash
 ```
+
+* Working directory : `/usr/src/myapp`
