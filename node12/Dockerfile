@@ -1,4 +1,4 @@
-FROM node:11 as nodejs
+FROM node:12 as nodejs
 
 FROM openjdk:8-jre-stretch
 
