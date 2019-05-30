@@ -1,4 +1,4 @@
-FROM node:11 as nodejs
+FROM node:12 as nodejs
 
 FROM openjdk:8-jre-stretch
 
@@ -13,16 +13,17 @@ RUN cd /usr/local/bin && \
     ln -s /opt/yarn/bin/yarnpkg yarnpkg
 
 LABEL maintainer="Lechuck Roh <lechuckroh@gmail.com>"
-LABEL name="SenchaCmd 6.7.0.37"
+LABEL name="SenchaCmd 5.1.3.61"
 
 WORKDIR /usr/src/myapp
 VOLUME ["/usr/src/myapp"]
-ENV PATH="/opt/Sencha/Cmd/6.7.0.37:${PATH}"
+ENV PATH="/opt/Sencha/Cmd/5.1.3.61:${PATH}"
 
 RUN cd /tmp && \
-    wget -q http://cdn.sencha.com/cmd/6.7.0.37/no-jre/SenchaCmd-6.7.0.37-linux-amd64.sh.zip && \
+    wget -q https://cdn.sencha.com/cmd/5.1.3.61/SenchaCmd-5.1.3.61-linux-x64.run.zip && \
     unzip *.zip && \
-    ./SenchaCmd-6.7.0.37-linux-amd64.sh -q -dir /opt/Sencha/Cmd/6.7.0.37 && \
+    chmod +x /tmp/SenchaCmd-5.1.3.61-linux-x64.run && \
+    /tmp/SenchaCmd-5.1.3.61-linux-x64.run --unattendedmodeui minimal --mode unattended --prefix /opt && \
     rm -f SenchaCmd* && \
     mkdir -p /usr/src/myapp
 
